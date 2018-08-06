@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+tensorflow-gpu = "==1.9"
+"h5py" = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
