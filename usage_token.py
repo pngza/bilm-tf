@@ -23,7 +23,7 @@ tokenized_question = [
 
 # Create the vocabulary file with all unique tokens and
 # the special <S>, </S> tokens (case sensitive).
-all_tokens = set(['<S>', '</S>'] + tokenized_question[0])
+all_tokens = ['<S>', '</S>'] + set(tokenized_question[0])
 for context_sentence in tokenized_context:
     for token in context_sentence:
         all_tokens.add(token)
@@ -96,10 +96,17 @@ with tf.Session() as sess:
     context_ids = batcher.batch_sentences(tokenized_context)
     question_ids = batcher.batch_sentences(tokenized_question)
 
+
+    print(f'context: {context_ids}')
+    print(f'question: {question_ids}')
+
     # Compute ELMo representations (here for the input only, for simplicity).
     elmo_context_input_, elmo_question_input_ = sess.run(
         [elmo_context_input['weighted_op'], elmo_question_input['weighted_op']],
         feed_dict={context_token_ids: context_ids,
                    question_token_ids: question_ids}
     )
-
+    print('context:')
+    print(elmo_context_input_)
+    print('question:')
+    print(elmo_question_input)
